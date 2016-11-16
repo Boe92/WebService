@@ -13,7 +13,6 @@ import com.alfasoft.entita.Fattura;
 public class FatturaDao implements IFatturaDao {
 	
 	private TreeMap<String,Fattura> fatture = null;
-	//private Fattura[] arrFatture = null;
 	
 	public FatturaDao() {
 		Fattura f1 = new Fattura("Boe", 1234, "Marco Boemi");
@@ -38,10 +37,10 @@ public class FatturaDao implements IFatturaDao {
 	@Override
 	@WebMethod
 	public Fattura[] getTutteFatture() {
-		List<Fattura> fat = new ArrayList<Fattura>(this.fatture.values());
-		Fattura [] fattura = (Fattura[]) fat.toArray();
+		List<Fattura> fat = new ArrayList<Fattura>(fatture.values());
+		Fattura[] fattura = new Fattura[fat.size()];
 		
-		return fattura;
+		return fat.toArray(fattura);
 	}
 	
 	/* (non-Javadoc)

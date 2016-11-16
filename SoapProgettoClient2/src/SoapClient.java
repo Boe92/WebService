@@ -16,8 +16,8 @@ public class SoapClient {
 			FatturaDao fd = locator.getFatturaDao();
 			Fattura[] fatture = fd.getTutteFatture();
 			
-			for(int i = 0; i<=fatture.length; i++) {
-				System.out.println(fatture[i]);
+			for(int i = 0; i<fatture.length; i++) {
+				System.out.println(fatture[i].getCodiceCliente()+" "+fatture[i].getImporto()+" "+fatture[i].getRagioneSociale());
 			} 
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
