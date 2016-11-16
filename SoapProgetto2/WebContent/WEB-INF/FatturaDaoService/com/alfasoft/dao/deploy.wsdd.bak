@@ -1,0 +1,39 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FatturaDaoService WSDL service -->
+
+  <service name="FatturaDao" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://dao.alfasoft.com"/>
+      <parameter name="wsdlServiceElement" value="FatturaDaoService"/>
+      <parameter name="schemaQualified" value="http://entita.alfasoft.com,http://dao.alfasoft.com"/>
+      <parameter name="wsdlServicePort" value="FatturaDao"/>
+      <parameter name="className" value="com.alfasoft.dao.FatturaDaoSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="FatturaDao"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getFatturaConCodice" qname="operNS:getFatturaConCodice" xmlns:operNS="http://dao.alfasoft.com" returnQName="retNS:getFatturaConCodiceReturn" xmlns:retNS="http://dao.alfasoft.com" returnType="rtns:Fattura" xmlns:rtns="http://entita.alfasoft.com" soapAction="" >
+        <parameter qname="pns:codice" xmlns:pns="http://dao.alfasoft.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getTutteFatture" qname="operNS:getTutteFatture" xmlns:operNS="http://dao.alfasoft.com" returnQName="retNS:getTutteFattureReturn" xmlns:retNS="http://dao.alfasoft.com" returnType="rtns:Fattura" xmlns:rtns="http://entita.alfasoft.com" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getFatturaConCodice getTutteFatture"/>
+
+      <typeMapping
+        xmlns:ns="http://entita.alfasoft.com"
+        qname="ns:Fattura"
+        type="java:com.alfasoft.entita.Fattura"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
