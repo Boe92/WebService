@@ -20,10 +20,8 @@ public class SoapClient {
 				System.out.println(fatture[i].getCodiceCliente()+" "+fatture[i].getImporto()+" "+fatture[i].getRagioneSociale());
 			} 
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
